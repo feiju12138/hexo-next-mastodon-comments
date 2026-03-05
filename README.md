@@ -27,10 +27,12 @@ mastodon-comments:
 
 ## Add `toot-id` in post header
 
-⚠️ Use quotes for toot-id to avoid JS precision loss
+⚠️ Use quotes for toot-id to avoid JS precision loss.
 
 ```md source/_posts/Test.md
 ---
 toot-id: "116164221651686918"
 ---
 ```
+
+You can also use [feiju12138/hexo-next-mastodon-comments-helper](https://github.com/feiju12138/hexo-next-mastodon-comments-helper) to auto add `toot-id` in post header.
