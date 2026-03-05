@@ -1,6 +1,6 @@
 {
-  "name": "hexo-next-mastodon-comments",
-  "version": "1.0.4",
+  "name": "hexo-next-mastodon-comments-core",
+  "version": "1.0.5",
   "description": "Mastodon Comments system for NexT.",
   "main": "index.js",
   "scripts": {
