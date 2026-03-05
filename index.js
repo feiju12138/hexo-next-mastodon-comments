@@ -1,37 +1,46 @@
 /* global hexo */
 
-'use strict';
+"use strict";
 
-const Util = require('@next-theme/utils');
-const utils = new Util(hexo, __dirname);
+// 注入嘟文编号
+hexo.extend.filter.register("after_post_render", function (data) {
 
-// Add comment
-hexo.extend.filter.register('theme_inject', injects => {
+  // 跳过所有非文章的页面
+  if (data.layout !== "post") {
+    return data;
+  }
 
-  const config = utils.defaultConfigFile('twikoo', 'default.yaml');
-  if (!config.enable || !config.envId) return;
+  // 在头部注入嘟文编号
+  data.content = [
+    `<div id="toot-id" style="display: none">${data["toot-id"]}</div>`,
+    data.content
+  ].join("");
 
-  injects.comment.raw('twikoo', '<div class="comments"><div id="twikoo-comments"></div></div>', {}, { cache: true });
-
-  injects.bodyEnd.raw('twikoo', utils.getFileContent('twikoo.njk'));
-
+  return data;
 });
 
-// Add post_meta
-hexo.extend.filter.register('theme_inject', injects => {
+// 注入外部依赖
+const css = hexo.extend.helper.get("css").bind(hexo);
+hexo.extend.injector.register(
+  "head_end",
+  () => css("https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"),
+  "post",
+);
 
-  const config = utils.defaultConfigFile('twikoo', 'default.yaml');
-  if (!config.enable || !config.envId) return;
-  if (config.visitor) {
-    injects.postMeta.raw('twikoo', `
-    <span id="{{ url_for(post.path) }}" class="post-meta-item twikoo_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  `, {}, {});
-  }
+// 添加评论
+const Util = require("@next-theme/utils");
+hexo.extend.filter.register("theme_inject", injects => {
+  // 获取配置
+  const utils = new Util(hexo, __dirname);
+  const config = utils.defaultConfigFile("mastodon-comments", "default.yaml");
+
+  // 判断是否未启用或缺少关键配置
+  if (!config.enable || !config.MASTODON_DOMAIN || !config.MASTODON_USER) return;
+
+  // 定义挂载点
+  injects.comment.raw("Mastodon Comments", `<div class="comments"><div id="mastodon-comments"></div></div>`, {}, { cache: true });
+
+  // 加载渲染脚本
+  injects.bodyEnd.raw("Mastodon Comments", utils.getFileContent("hexo-next-mastodon-comments.njk"));
 
 });
