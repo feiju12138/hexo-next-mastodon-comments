@@ -1,4 +1,4 @@
-# Hexo NexT Twikoo
+# Hexo NexT Mastodon Comments
 
 ![Theme Version](https://img.shields.io/badge/NexT-v8.4.0+-blue?style=flat-square)
 ![Package Version](https://img.shields.io/github/package-json/v/feiju12138/hexo-next-mastodon-comments?style=flat-square)
