@@ -11,10 +11,6 @@ Mastodon Comments system for NexT.
 npm install hexo-next-mastodon-comments
 ```
 
-## Register
-
-Please refer to https://github.com/feiju12138/mastodon-comments
-
 ## Configure
 
 Set the value `enable` to `true`, add the Mastodon instance domain (`MASTODON_DOMAIN`), and add the Mastodon instance username (`MASTODON_USER`). You can config those in both **hexo** or **theme** `_config.yml`:
@@ -27,4 +23,14 @@ mastodon-comments:
   MASTODON_DOMAIN: mastodon.social # Mastodon 实例域名
   MASTODON_USER: feiju # Mastodon 实例中根评论发布的用户名
   # JS: https://cdn.jsdelivr.net/gh/feiju12138/mastodon-comments@latest/dist/mastodon-comments.min.js # 自定义 JS 文件地址
+```
+
+## Add `toot-id` in post header
+
+⚠️ Use quotes for toot-id to avoid JS precision loss
+
+```md source/_posts/Test.md
+---
+toot-id: "116164221651686918"
+---
 ```
