@@ -8,7 +8,7 @@ Mastodon Comments system for NexT.
 ## Install
 
 ```bash
-npm install hexo-next-mastodon-comments
+npm install hexo-next-mastodon-comments-core
 ```
 
 ## Configure
