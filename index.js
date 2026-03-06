@@ -6,7 +6,7 @@
 hexo.extend.filter.register("after_post_render", function (data) {
 
   // 跳过所有非文章的页面
-  if (data.layout !== "post") {
+  if (data.layout !== "post" && data.layout !== "page") {
     return data;
   }
 
