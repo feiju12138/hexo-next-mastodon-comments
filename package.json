@@ -1,0 +1,24 @@
+{
+  "name": "hexo-next-mastodon-comments-core",
+  "version": "1.2.1",
+  "description": "Mastodon Comments system for NexT.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/feiju12138/hexo-next-mastodon-comments",
+  "keywords": [
+    "Hexo",
+    "NexT",
+    "mastodon-comments"
+  ],
+  "author": "feiju12138",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/feiju12138/hexo-next-mastodon-comments/issues"
+  },
+  "homepage": "https://github.com/feiju12138/hexo-next-mastodon-comments#readme",
+  "dependencies": {
+    "@next-theme/utils": "^1.1.0"
+  }
+}
