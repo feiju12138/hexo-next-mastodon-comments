@@ -1,0 +1,22 @@
+{{ next_data("mastodon-comments", config["mastodon-comments"]) }}
+
+<script>
+  document.addEventListener("page:loaded", () => {
+    if (!CONFIG.page.comments) return;
+
+    NexT.utils.loadComments("#mastodon-comments")
+      .then(() => NexT.utils.getScript(CONFIG["mastodon-comments"].JS || "https://cdn.jsdelivr.net/gh/feiju12138/mastodon-comments@4/dist/mastodon-comments.min.js"))
+      .then(() => {
+        const tootIdEl = document.getElementById("toot-id");
+        if (tootIdEl && tootIdEl.textContent !== "undefined") {
+          initMastodonComments({
+            MASTODON_DOMAIN: CONFIG["mastodon-comments"].MASTODON_DOMAIN,
+            MASTODON_USER: CONFIG["mastodon-comments"].MASTODON_USER,
+            TOOT_ID: tootIdEl.textContent
+          });
+        } else {
+          document.innerHTML = '<div style="padding: 16px; color: #666;">当前文章未绑定嘟文</div>';
+        }
+      });
+  });
+</script>
